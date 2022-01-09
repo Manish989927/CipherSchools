@@ -1,0 +1,72 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int solution(vector<int>& arr, int x)
+{
+
+
+    sort(arr.begin(), arr.end());
+
+
+    int closestSum = 1000000000;
+
+
+    for (int i = 0; i < arr.size() - 2; i++) {
+
+
+        int ptr1 = i + 1, ptr2 = arr.size() - 1;
+
+
+        while (ptr1 < ptr2) {
+
+
+            int sum = arr[i] + arr[ptr1] + arr[ptr2];
+
+
+              if (sum == x)
+              return sum;
+
+            if (abs(x - sum) < abs(x - closestSum)) {
+                closestSum = sum;
+            }
+
+
+            if (sum > x) {
+                ptr2--;
+            }
+
+
+            else {
+                ptr1++;
+            }
+        }
+    }
+
+
+    return closestSum;
+}
+int main()
+{
+    vector<int> arr;
+    int n;
+    cout<<"enter no elements\n";
+    cin>>n;
+    cout<<"\nenter the elements \n";
+    for(int i=1; i<=n; i++)
+    {
+        int k;
+        cin>>k;
+        arr.push_back(k);
+
+    }
+    cout<<"\n enter the target:\n";
+
+    int x ;
+    cin>>x;
+    cout<<"\nnearest triplet\n";
+    cout << solution(arr, x);
+
+    return 0;
+}
